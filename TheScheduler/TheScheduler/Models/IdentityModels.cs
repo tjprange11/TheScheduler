@@ -29,5 +29,12 @@ namespace TheScheduler.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Consumer> Consumers { get; set; }
+        public DbSet<Owner> Owners { get; set; }
+        public DbSet<Facility> Facilities { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<FacilityAddress> FacilityAddresses { get; set; }
     }
 }

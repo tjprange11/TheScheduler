@@ -11,10 +11,12 @@ namespace TheScheduler.Models
     {
         [Key]
         public int ID { get; set; }
-        [ForeignKey("Facility Address")]
+        [ForeignKey("FacilityAddress")]
         public int FacilityAddress_ID { get; set; }
+        public FacilityAddress FacilityAddress { get; set; }
         [ForeignKey("Owner")]
         public int Owner_ID { get; set; }
+        public Owner Owner { get; set; }
         public string Name { get; set; }
         public string Sport { get; set; }
         public bool Indoor { get; set; }

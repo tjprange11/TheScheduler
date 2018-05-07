@@ -13,8 +13,10 @@ namespace TheScheduler.Models
         public int ID { get; set; }
         [ForeignKey("Facility")]
         public int Facility_ID { get; set; }
+        public Facility Facility { get; set; }
         [ForeignKey("Consumer")]
         public int Consumer_ID { get; set; }
+        public Consumer Consumer { get; set; }
         public bool Status { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
