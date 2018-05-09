@@ -15,9 +15,9 @@ namespace TheScheduler.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Owners
-        public ActionResult Index()
+        public ActionResult Home()
         {
-            return View(db.Owners.ToList());
+            return View();
         }
 
         
