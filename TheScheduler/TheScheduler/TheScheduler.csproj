@@ -220,7 +220,7 @@
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Consumer.cs" />
     <Compile Include="Models\Email.cs" />
-    <Compile Include="Models\EmailController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Models\Facility.cs" />
     <Compile Include="Models\FacilityAddress.cs" />
     <Compile Include="Models\IdentityModels.cs" />
