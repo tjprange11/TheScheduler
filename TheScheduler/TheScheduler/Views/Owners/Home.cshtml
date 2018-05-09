@@ -1,0 +1,71 @@
+﻿@model TheScheduler.Models.Owner
+@{
+    ViewBag.Title = "Home";
+}
+
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+    <style>
+        .map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Facility Owner</h1>
+        <p class="lead">As a Facility Owner you can create new Facilities to showcase to other users.</p>
+        
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Create A Facility</h2>
+            <p>
+                Here you can create a new Facility that will be showcased to other users.
+                The Facility must be verified by an admin before it is showcased.
+            </p>
+            @Html.ActionLink("Create", "Create" , "Facilities", new { Owner = Model }, new { @class = "btn btn-default" })
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                <div id="map" class="map"></div>
+                <script type="text/javascript">
+                    var map = new ol.Map({
+                        target: 'map',
+                        layers: [
+                            new ol.layer.Tile({
+                                source: new ol.source.OSM()
+                            })
+                        ],
+                        view: new ol.View({
+                            center: ol.proj.fromLonLat([-88, 43.032]),
+                            zoom: 10
+                        })
+                    });
+                </script>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @Html.ActionLink("ActiveLink", "Index", "Home", new { lat = 2.5, lon = 5.5 }, null)
+        </div>
+    </div>
+</body>
+

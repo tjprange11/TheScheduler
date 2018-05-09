@@ -208,6 +208,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConsumersController.cs" />
+    <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OwnersController.cs" />
@@ -298,11 +299,13 @@
     <Content Include="Views\Admins\Edit.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
     <Content Include="Views\Consumers\Index.cshtml" />
-    <Content Include="Views\Owners\Create.cshtml" />
-    <Content Include="Views\Owners\Delete.cshtml" />
-    <Content Include="Views\Owners\Details.cshtml" />
-    <Content Include="Views\Owners\Edit.cshtml" />
-    <Content Include="Views\Owners\Index.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Owners\Home.cshtml" />
+    <Content Include="Views\Facilities\Create.cshtml" />
+    <Content Include="Views\Facilities\Delete.cshtml" />
+    <Content Include="Views\Facilities\Details.cshtml" />
+    <Content Include="Views\Facilities\Edit.cshtml" />
+    <Content Include="Views\Facilities\Index.cshtml" />
     <Content Include="Views\Email\Email.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>

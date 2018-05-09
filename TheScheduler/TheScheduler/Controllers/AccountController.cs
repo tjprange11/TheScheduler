@@ -85,12 +85,12 @@ namespace TheScheduler.Controllers
                     var consumer = context.Consumers.Where(data => data.UserId == user.Id).Select(data => data).First();
                     if(consumer != null)
                     {
-                        return RedirectToAction("Index", "Consumer");
+                        return RedirectToAction("Home", "Consumer");
                     }
                     var owner = context.Owners.Where(data => data.UserId == user.Id).Select(data => data).First();
                     if (owner != null)
                     {
-                        return RedirectToAction("Index", "Owner");
+                        return RedirectToAction("Home", "Owner");
                     }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -181,7 +181,7 @@ namespace TheScheduler.Controllers
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     //Ends Here
                     string controller = model.UserRoles;    
-                    return RedirectToAction("Index", controller + "s");
+                    return RedirectToAction("Home", controller + "s");
                 }
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
                                           .ToList(), "Name", "Name");
