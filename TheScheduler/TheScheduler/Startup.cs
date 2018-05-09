@@ -28,7 +28,7 @@ namespace TheScheduler
             {
 
                 // first we create Admin rool   
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                var role = new IdentityRole();
                 role.Name = "Admin";
                 roleManager.Create(role);
 
@@ -53,7 +53,7 @@ namespace TheScheduler
             // creating Creating Manager role    
             if (!roleManager.RoleExists("Owner"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                var role = new IdentityRole();
                 role.Name = "Owner";
                 roleManager.Create(role);
 
@@ -62,7 +62,7 @@ namespace TheScheduler
             // creating Creating Employee role    
             if (!roleManager.RoleExists("Consumer"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                var role = new IdentityRole();
                 role.Name = "Consumer";
                 roleManager.Create(role);
 
