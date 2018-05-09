@@ -31,7 +31,7 @@ namespace TheScheduler.Controllers
             smtp.Port = 587;
             smtp.EnableSsl = true;
 
-            NetworkCredential nc = new NetworkCredential("TheBetterScheduler@gmail.com", "Password123$");
+            NetworkCredential nc = new NetworkCredential("TheBetterScheduler@gmail.com", "Password");
             smtp.UseDefaultCredentials = true;
             smtp.Credentials = nc;
             smtp.Send(mm);
