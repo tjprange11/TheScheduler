@@ -1,0 +1,58 @@
+﻿@model TheScheduler.Models.Email
+
+@{
+    ViewBag.Title = "Email";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Email", "Email", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <center>
+                <h1>Email</h1>
+                <hr />
+                <table>
+                    <tr>
+                        <td style="width: 100px">
+                            To:
+                        </td>
+                        <td>@Html.TextBoxFor(model => model.To)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            From:
+                        </td>
+                        <td>@Html.TextBoxFor(model => model.From)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Subject:
+                        </td>
+                        <td>@Html.TextBoxFor(model => model.Subject)</td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            Body:
+                        </td>
+                        <td>@Html.TextAreaFor(model => model.Body, new { rows = "15", cols = "100" })</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Send" />
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <span style="color:green">@ViewBag.Message</span>
+            </center>
+        }
+    </div>
+</body>
+</html>
