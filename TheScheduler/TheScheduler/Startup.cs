@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using System.Collections.Generic;
 using TheScheduler.Models;
 
 [assembly: OwinStartupAttribute(typeof(TheScheduler.Startup))]
@@ -12,61 +13,41 @@ namespace TheScheduler
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            createRolesandUsers();
-        }
-        // In this method we will create default User roles and Admin user for login   
-        private void createRolesandUsers()
-        {
-            ApplicationDbContext context = new ApplicationDbContext();
 
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            
 
+            //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            //string userPWD;
 
-            // In Startup iam creating first Admin Role and creating a default Admin User    
-            if (!roleManager.RoleExists("Admin"))
-            {
+            //var user = new ApplicationUser();
+            //user.UserName = "tjprange11";
+            //user.Email = "tjprange11@gmail.com";
+            //userPWD = "RoCkS=13";
 
-                // first we create Admin rool   
-                var role = new IdentityRole();
-                role.Name = "Admin";
-                roleManager.Create(role);
+            //if (UserManager.Create(user, userPWD).Succeeded)
+            //{
+            //    UserManager.AddToRole(user.Id, "Admin");
+            //}
 
-                //Here we create a Admin super user who will maintain the website                  
+            //user = new ApplicationUser();
+            //user.UserName = "SlyFiye";
+            //user.Email = "austin.pichler@gmail.com";
+            //userPWD = "Password100.";
 
-                var user = new ApplicationUser();
-                user.UserName = "tjprange11";
-                user.Email = "tjprange11@gmail.com";
+            //if (UserManager.Create(user, userPWD).Succeeded)
+            //{
+            //    UserManager.AddToRole(user.Id, "Admin");
+            //}
 
-                string userPWD = "RoCkS=13";
+            //user = new ApplicationUser();
+            //user.UserName = "Air-Ick";
+            //user.Email = "EHenderson421@gmail.com";
+            //userPWD = "Password100.";
 
-                var chkUser = UserManager.Create(user, userPWD);
-
-                //Add default User to Role Admin   
-                if (chkUser.Succeeded)
-                {
-                    var result1 = UserManager.AddToRole(user.Id, "Admin");
-
-                }
-            }
-
-            // creating Creating Manager role    
-            if (!roleManager.RoleExists("Owner"))
-            {
-                var role = new IdentityRole();
-                role.Name = "Owner";
-                roleManager.Create(role);
-
-            }
-
-            // creating Creating Employee role    
-            if (!roleManager.RoleExists("Consumer"))
-            {
-                var role = new IdentityRole();
-                role.Name = "Consumer";
-                roleManager.Create(role);
-
-            }
+            //if (UserManager.Create(user, userPWD).Succeeded)
+            //{
+            //    UserManager.AddToRole(user.Id, "Admin");
+            //}
         }
     }
 }

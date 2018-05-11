@@ -1,45 +1,53 @@
-﻿@model TheScheduler.Models.Facility
+﻿@model IEnumerable<TheScheduler.Models.Facility>
 
 <h2>Index</h2>
 
-<div>
-    <h4>Facility</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FacilityAddress.StreetAddress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FacilityAddress.StreetAddress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sport)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sport)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Indoor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Indoor)
-        </dd>
-
-    </dl>
-</div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Create New", "Create")
 </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FacilityAddress.StreetAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Indoor)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacilityAddress.StreetAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Indoor)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
