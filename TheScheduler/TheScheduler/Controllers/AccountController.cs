@@ -1,13 +1,10 @@
-﻿using System;
-using System.Globalization;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using TheScheduler.Models;
 
 namespace TheScheduler.Controllers
@@ -74,24 +71,12 @@ namespace TheScheduler.Controllers
             {
                 return View(model);
             }
-
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    var user = context.Users.Where(data => data.UserName.Equals(model.UserName)).Select(data => data).First();
-                    var consumer = context.Consumers.Where(data => data.UserId == user.Id).Select(data => data).First();
-                    if(consumer != null)
-                    {
-                        return RedirectToAction("Home", "Consumer");
-                    }
-                    var owner = context.Owners.Where(data => data.UserId == user.Id).Select(data => data).First();
-                    if (owner != null)
-                    {
-                        return RedirectToAction("Home", "Owner");
-                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using TheScheduler.Models;
 
@@ -20,7 +17,6 @@ namespace TheScheduler.Controllers
             var facilities = db.Facilities.Include(f => f.FacilityAddress).Include(f => f.Owner);
             return View(facilities.ToList());
         }
-
         // GET: Facilities/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,13 +31,14 @@ namespace TheScheduler.Controllers
             }
             return View(facility);
         }
-
         // GET: Facilities/Create
-        public ActionResult Create(Owner owner)
+        public ActionResult Create(int FacilityAddressId)
         {
-            ViewBag.FacilityAddressId = new SelectList(db.FacilityAddresses, "ID", "StreetAddress");
-            ViewBag.OwnerId = new SelectList(db.Owners, "ID", "UserId");
-            ViewBag.Owner = owner;
+            ViewBag.FacilityAddressId = FacilityAddressId;
+            ViewBag.FacilityAddress = db.FacilityAddresses.Where(data => data.ID == FacilityAddressId).Select(data => data).First();
+            Owner Owner = db.Owners.Where(user => user.ID == 0).Select(user => user).First();
+            ViewBag.OwnerId = Owner.ID;
+            ViewBag.Owner = Owner;
             return View();
         }
 
@@ -50,7 +47,7 @@ namespace TheScheduler.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,FacilityAddressId,OwnerId,Name,Sport,Indoor")] Facility facility)
+        public ActionResult Create([Bind(Include = "ID,FacilityAddressID,OwnerId,Name,Sport,Indoor")] Facility facility)
         {
             if (ModelState.IsValid)
             {
