@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Weather Forcast";
+}
+
+<h2>Weather Forcast</h2>
+
+<p id="reply"></p>
+<div class="row">
+    <div class="col-md-2">
+        <p>Todays Weather</p>
+        <p id="temptoday"></p>
+    </div>
+    <div class="col-md-2">
+        <p>Tomorrow</p>
+        <p id="temptomorrow"></p>
+    </div>
+    <div class="col-md-2">
+        <p>Day 3</p>
+        <p id="tempday3"></p>
+    </div>
+    <div class="col-md-2">
+        <p>Day 4</p>
+        <p id="tempday4"></p>
+    </div>
+    <div class="col-md-2">
+        <p>Day 5</p>
+        <p id="tempday5"></p>
+    </div>
+</div>
+
+
+
+
+<script>
+            //$(document).ready(function () {
+            //    $("button").click(function () {
+            $.get("http://api.openweathermap.org/data/2.5/forecast?zip=53186,us&&APPID=98fa07dde82680ddf4f6419e01844f13&units=imperial", function (response) {
+                //response
+
+                console.log(response);
+
+                $("#reply").text(response.city.name + " 5-Day Weather Forcast");
+                $("#temptoday").text(response.list[0].main.temp + " F° " + response.list[0].weather[0].main);
+                $("#temptomorrow").text(response.list[8].main.temp + " F° " + response.list[8].weather[0].main);
+                $("#tempday3").text(response.list[16].main.temp + " F° " + response.list[16].weather[0].main);
+                $("#tempday4").text(response.list[24].main.temp + " F° " + response.list[24].weather[0].main);
+                $("#tempday5").text(response.list[32].main.temp + " F° " + response.list[32].weather[0].main);
+
+
+            });
+            //    });
+            //});
+
+</script>
+
