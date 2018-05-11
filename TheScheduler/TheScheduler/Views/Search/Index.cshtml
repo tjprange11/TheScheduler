@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<TheScheduler.Models.Facility>
 
-<h2>Index</h2>
+<h2>Search For Facilities</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -24,6 +24,7 @@
         </th>
         <th></th>
     </tr>
+
     @if (Model != null)
     {
         foreach (var item in Model)
@@ -53,5 +54,6 @@
         }
     }
    
+
 
 </table>

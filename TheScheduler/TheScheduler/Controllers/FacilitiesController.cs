@@ -36,7 +36,7 @@ namespace TheScheduler.Controllers
         {
             ViewBag.FacilityAddressId = FacilityAddressId;
             ViewBag.FacilityAddress = db.FacilityAddresses.Where(data => data.ID == FacilityAddressId).Select(data => data).First();
-            Owner Owner = db.Owners.Where(user => user.ID == 0).Select(user => user).First();
+            Owner Owner = db.Owners.Where(owner => owner.ID == 1).First();
             ViewBag.OwnerId = Owner.ID;
             ViewBag.Owner = Owner;
             return View();
