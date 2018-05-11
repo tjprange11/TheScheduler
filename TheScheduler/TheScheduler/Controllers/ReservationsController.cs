@@ -71,6 +71,23 @@ namespace TheScheduler.Controllers
             return View(reservation);
         }
 
+        public ActionResult Accept(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Reservation reservation = db.Reservations.Find(id);
+            if (reservation == null)
+            {
+                return HttpNotFound();
+            }
+            reservation.Accepted = true;
+            var facility = db.Facilities.Where(data => data.ID == reservation.FacilityId).First();
+            var owner = db.Owners.Where(data => data.ID == facility.OwnerId).First();
+            return RedirectToAction("Index", new { OwnerId = owner.ID });
+        }
+
         // GET: Reservations/Edit/5
         public ActionResult Edit(int? id)
         {
