@@ -214,6 +214,7 @@
     <Compile Include="Controllers\OwnersController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\WeatherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -307,6 +308,7 @@
     <Content Include="Views\Facilities\Index.cshtml" />
     <Content Include="Views\Email\Email.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Weather\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
