@@ -28,17 +28,17 @@
                 Here you can create a new Facility that will be showcased to other users.
                 The Facility must be verified by an admin before it is showcased.
             </p>
-            @Html.ActionLink("Create", "Create" , "Facilities", new { Owner = Model }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Create", "Create" , "FacilityAddresses", null, new { @class = "btn btn-default" })
         </div>
         <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+            <h2>Facilities</h2>
+            <p>Here you can find the list of Facilities that are currently being showcased</p>
+            @Html.ActionLink("Facilities", "Index", "Facilities", null, new { @class = "btn btn-default" })
         </div>
         <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+            <h2>My Reservations</h2>
+            <p>Here you can see pending reservations to your facility. You are able to accept or deny them as you please</p>
+            @Html.ActionLink("Reservations", "Index", "Reservations", new {OwnerId = Model.Id }, new { @class = "btn btn-default" })
         </div>
     </div>
     <div class="row">
