@@ -164,6 +164,24 @@ namespace TheScheduler.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");   
                     //Assign Role to user Here      
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+                    if (model.UserRoles.Equals("Owner"))
+                    {
+                        Owner newCustomer = new Owner
+                        {
+                            UserId = user.Id
+                        };
+                        context.Owners.Add(newCustomer);
+                        context.SaveChanges();
+                    }
+                    else if (model.UserRoles.Equals("Consumer"))
+                    {
+                        Consumer newCustomer = new Consumer
+                        {
+                            UserId = user.Id
+                        };
+                        context.Consumers.Add(newCustomer);
+                        context.SaveChanges();
+                    }
                     //Ends Here
                     string controller = model.UserRoles;    
                     return RedirectToAction("Home", controller + "s");

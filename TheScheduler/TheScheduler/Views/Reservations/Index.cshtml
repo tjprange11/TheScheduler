@@ -53,8 +53,11 @@
             @Html.DisplayFor(modelItem => item.Completed)
         </td>
         <td>
-            @Html.ActionLink("Accept", "Accept", new { id=item.ID }) |
-            @Html.ActionLink("Deny", "Delete", new { id=item.ID })
+            @if(item.Accepted == false)
+            {
+                Html.ActionLink("Accept", "Accept", new { id = item.ID });
+                Html.ActionLink("Deny", "Delete", new { id = item.ID });
+            }
         </td>
     </tr>
 }

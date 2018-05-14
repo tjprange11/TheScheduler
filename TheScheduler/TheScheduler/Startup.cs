@@ -13,6 +13,18 @@ namespace TheScheduler
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            ApplicationDbContext context = new ApplicationDbContext();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            List<string> rolesToAdd = new List<string> { "Admin", "Owner", "Consumer" };
+
+            foreach (string role in rolesToAdd)
+            {
+                if (!roleManager.RoleExists(role))
+                {
+                    roleManager.Create(new IdentityRole(role));
+                }
+            }
         }
     }
 }

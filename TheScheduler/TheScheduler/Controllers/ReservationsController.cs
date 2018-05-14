@@ -22,7 +22,7 @@ namespace TheScheduler.Controllers
         }
 
         // Get : Reservations/Id
-        public ActionResult Index(int Id)
+        public ActionResult OwnerIndex(int? Id)
         {
             int facilityId = db.Facilities.Where(data => data.OwnerId == Id).Select(data => data.ID).First();
             var reservations = db.Reservations.Where(data => data.FacilityId == facilityId).Select(data => data);
@@ -85,7 +85,7 @@ namespace TheScheduler.Controllers
             reservation.Accepted = true;
             var facility = db.Facilities.Where(data => data.ID == reservation.FacilityId).First();
             var owner = db.Owners.Where(data => data.ID == facility.OwnerId).First();
-            return RedirectToAction("Index", new { OwnerId = owner.ID });
+            return RedirectToAction("OwnerIndex", new { OwnerId = owner.ID });
         }
 
         // GET: Reservations/Edit/5
