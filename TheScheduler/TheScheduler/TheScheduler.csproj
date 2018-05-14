@@ -207,7 +207,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ConsumersController.cs" />
+    <Compile Include="Controllers\ConsumerController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\FacilityAddressesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -220,9 +220,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805141345219_database.cs" />
-    <Compile Include="Migrations\201805141345219_database.Designer.cs">
-      <DependentUpon>201805141345219_database.cs</DependentUpon>
+    <Compile Include="Migrations\201805141801462_first.cs" />
+    <Compile Include="Migrations\201805141801462_first.Designer.cs">
+      <DependentUpon>201805141801462_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -319,7 +319,6 @@
     <Content Include="Views\Admins\Details.cshtml" />
     <Content Include="Views\Admins\Edit.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
-    <Content Include="Views\Consumers\Index.cshtml" />
     <Content Include="Views\Owners\Home.cshtml" />
     <Content Include="Views\Facilities\Create.cshtml" />
     <Content Include="Views\Facilities\Delete.cshtml" />
@@ -344,6 +343,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Views\Consumer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -354,8 +354,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805141345219_database.resx">
-      <DependentUpon>201805141345219_database.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805141801462_first.resx">
+      <DependentUpon>201805141801462_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

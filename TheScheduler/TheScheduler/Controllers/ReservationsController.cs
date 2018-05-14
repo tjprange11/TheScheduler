@@ -1,4 +1,7 @@
 ﻿using System;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -22,10 +25,14 @@ namespace TheScheduler.Controllers
         }
 
         // Get : Reservations/Id
-        public ActionResult OwnerIndex(int? Id)
+        public ActionResult OwnerIndex()
         {
-            int facilityId = db.Facilities.Where(data => data.OwnerId == Id).Select(data => data.ID).First();
-            var reservations = db.Reservations.Where(data => data.FacilityId == facilityId).Select(data => data);
+            string currentUser = User.Identity.GetUserId();
+            int anOwnerId = db.Owners.Where(data => data.UserId == currentUser).Select(data => data.ID).First();
+
+            int aFacilityId = db.Facilities.Where(data => data.OwnerId == anOwnerId).Select(data => data.ID).First();
+
+            var reservations = db.Reservations.Where(data => data.FacilityId == aFacilityId).Include(f => f.Facility.FacilityAddress);
             return View(reservations.ToList());
         }
 
@@ -83,6 +90,7 @@ namespace TheScheduler.Controllers
                 return HttpNotFound();
             }
             reservation.Accepted = true;
+            db.SaveChanges();
             var facility = db.Facilities.Where(data => data.ID == reservation.FacilityId).First();
             var owner = db.Owners.Where(data => data.ID == facility.OwnerId).First();
             return RedirectToAction("OwnerIndex", new { OwnerId = owner.ID });

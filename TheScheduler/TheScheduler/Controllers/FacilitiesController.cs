@@ -1,4 +1,7 @@
-﻿using System.Data;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -12,9 +15,16 @@ namespace TheScheduler.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Facilities
+        //public ActionResult Index()
+        //{
+        //    var facilities = db.Facilities.Include(f => f.FacilityAddress).Include(f => f.Owner);
+        //    return View(facilities.ToList());
+        //}
         public ActionResult Index()
         {
-            var facilities = db.Facilities.Include(f => f.FacilityAddress).Include(f => f.Owner);
+            string currentUser = User.Identity.GetUserId();
+            int anOwnerId = db.Owners.Where(data => data.UserId == currentUser).Select(data => data.ID).First();
+            var facilities = db.Facilities.Where(data => data.OwnerId == anOwnerId).Include(f => f.FacilityAddress).Include(f => f.Owner);
             return View(facilities.ToList());
         }
         // GET: Facilities/Details/5
@@ -35,10 +45,6 @@ namespace TheScheduler.Controllers
         public ActionResult Create(int FacilityAddressId)
         {
             ViewBag.FacilityAddressId = FacilityAddressId;
-            ViewBag.FacilityAddress = db.FacilityAddresses.Where(data => data.ID == FacilityAddressId).Select(data => data).First();
-            Owner Owner = db.Owners.Where(owner => owner.ID == 1).First();
-            ViewBag.OwnerId = Owner.ID;
-            ViewBag.Owner = Owner;
             return View();
         }
 
@@ -49,9 +55,15 @@ namespace TheScheduler.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,FacilityAddressID,OwnerId,Name,Sport,Indoor")] Facility facility)
         {
+            Facility fac = new Facility();
+            fac = facility;
+            string userrr = User.Identity.GetUserId();
+            Owner owner = db.Owners.Where(data => data.UserId == userrr).First();
+            fac.OwnerId = owner.ID;
+
             if (ModelState.IsValid)
             {
-                db.Facilities.Add(facility);
+                db.Facilities.Add(fac);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

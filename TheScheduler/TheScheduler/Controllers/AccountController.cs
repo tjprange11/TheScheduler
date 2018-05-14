@@ -181,6 +181,7 @@ namespace TheScheduler.Controllers
                         };
                         context.Consumers.Add(newCustomer);
                         context.SaveChanges();
+                        return RedirectToAction("Index", "Home");
                     }
                     //Ends Here
                     string controller = model.UserRoles;    
