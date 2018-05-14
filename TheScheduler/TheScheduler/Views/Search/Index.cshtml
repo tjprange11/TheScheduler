@@ -24,27 +24,36 @@
         </th>
         <th></th>
     </tr>
+
     @if (Model != null)
     {
-        foreach (var facility in Model)
+        foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => facility.FacilityAddress.City)
+                    @Html.DisplayFor(modelItem => item.FacilityAddress.StreetAddress)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => facility.Name)
+                    @Html.DisplayFor(modelItem => item.Owner.UserId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => facility.Sport)
+                    @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => facility.Indoor)
+                    @Html.DisplayFor(modelItem => item.Sport)
                 </td>
                 <td>
-                    @Html.ActionLink("View", "View", new { id = facility.ID })
+                    @Html.DisplayFor(modelItem => item.Indoor)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                 </td>
             </tr>
         }
     }
+   
+
+
 </table>
